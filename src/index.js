@@ -1,3 +1,3 @@
 export validateReducer from './validateReducer';
-export validateActionName from './validateActionName';
+export validateActionType from './validateActionType';
 export validateAction from './validateAction';

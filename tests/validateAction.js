@@ -23,34 +23,34 @@ describe('validateAction()', () => {
         };
 
         describeValidateActionThrow(
-            'does not define "name" property',
-            'Action definition object must define "name" property.',
+            'does not define "type" property',
+            'Action definition object must define "type" property.',
             {}
         );
 
         describeValidateActionThrow(
-            '"name" property value does not consist only of uppercase alphabetical characters and underscores',
-            'Action definition object "name" property value must be a valid action name.',
+            '"type" property value does not consist only of uppercase alphabetical characters and underscores',
+            'Action definition object "type" property value must be a valid action type.',
             {
-                name: 'lowercase'
+                type: 'lowercase'
             }
         );
 
         describeValidateActionThrow(
-            '"data" property is present and it is not a plain object',
-            'Action definition object "data" property value must be a plain object.',
+            '"payload" property is present and it is not a plain object',
+            'Action definition object "payload" property value must be a plain object.',
             {
-                name: 'FOO',
-                data: 'not object'
+                type: 'FOO',
+                payload: 'not object'
             }
         );
 
         describeValidateActionThrow(
-            '"metadata" property is present and it is not a plain object',
-            'Action definition object "metadata" property value must be a plain object.',
+            '"meta" property is present and it is not a plain object',
+            'Action definition object "meta" property value must be a plain object.',
             {
-                name: 'FOO',
-                metadata: 'not object'
+                type: 'FOO',
+                meta: 'not object'
             }
         );
 
@@ -58,7 +58,7 @@ describe('validateAction()', () => {
             'defines unknown properties',
             'Action definition object must not define unknown properties.',
             {
-                name: 'FOO',
+                type: 'FOO',
                 foo: 'bar'
             }
         );

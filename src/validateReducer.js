@@ -5,7 +5,7 @@ import forEach from 'lodash.foreach';
 import indexOf from 'lodash.indexof';
 import values from 'lodash.values';
 
-import validateActionName from './validateActionName';
+import validateActionType from './validateActionType';
 
 let isDomainMap,
     isActionMap;
@@ -36,18 +36,18 @@ export default (reducer) => {
     iterator = (branch) => {
         forEach(branch, (value, domainName) => {
             if (isActionMap(value)) {
-                forEach(value, (action, name) => {
+                forEach(value, (action, type) => {
                     try {
-                        validateActionName(name);
+                        validateActionType(type);
                     } catch (e) {
-                        throw new Error('Reducer definition object action handler names must be valid action names.');
+                        throw new Error('Reducer definition object action handler types must be valid action types.');
                     }
 
-                    if (indexOf(actionIndex, name) !== -1) {
-                        throw new Error('Reducer definition object action handler names must be unique.');
+                    if (indexOf(actionIndex, type) !== -1) {
+                        throw new Error('Reducer definition object action handler types must be unique.');
                     }
 
-                    actionIndex.push(name);
+                    actionIndex.push(type);
                 });
             } else if (isDomainMap(value)) {
                 iterator(branch[domainName]);

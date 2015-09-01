@@ -32,7 +32,7 @@ export default (action) => {
         throw new Error('Action definition object "meta" property value must be a plain object.');
     }
 
-    if (!isUndefined(action.error) && isBoolean(action.error)) {
+    if (!isUndefined(action.error) && !isBoolean(action.error)) {
         throw new Error('Action definition object "error" project value must be a boolean.');
     }
 
